@@ -28,17 +28,17 @@ Each lecture is structured as a lab module with:
 
 ---
 
-# 📘 Core Course Artifacts
+# Core Course Artifacts
 
 - [Course Syllabus](./Syllabus-MA-ResponsibleMachineLearning-MSBA-v2.0.pdf)
 
 ---
 
-# Lab Modules
+# Class Modules
 
 ---
 
-## Lab 01 – Foundations of the Alignment Problem
+## Lecture 01 – Foundations of the Alignment Problem
 **Theme:** Objective functions, proxy failure, and feedback loops  
 
 📁 Folder: [Lecture 1](./Lecture-01-alignment/)
@@ -53,45 +53,59 @@ Contents:
 
 ---
 
-## Lab 02 – Explainability and Interpretability as Diagnostic Tools
+## Lecture 02 – Explainability and Interpretability as Diagnostic Tools
 📁 Folder: [Lecture 2](./Lecture-02-xAI/)
 
 Focus: Examines explainability and interpretability as diagnostic practices rather than a checkbox, comparing model level and system level explanations, assessing tools such as LIME, SHAP, and counterfactuals, and analyzing cases where explainability failed in production across stakeholder contexts.
 
 ---
 
-## Lab 03 – Algorithmic Bias Measurement
+## Lecture 03 – Algorithmic Bias Measurement
 📁 Folder: [Lecture 3](./Lecture-03-bias/)
 
 Focus: Focuses on identifying and measuring algorithmic bias, including allocational, representational, and quality of service harms, with grounding in U.S. anti-discrimination laws, fairness definitions, proxy discrimination, intersectionality, and hands-on subgroup evaluation using real datasets.
 
 ---
 
-## Lab 04 – Robustness, Generalization, and Dataset Drift
+## Lecture 04 – Robustness, Generalization, and Dataset Drift
 📁 Folder: [Lecture 4](./Lecture-04-generalization/)
 
 Focus: Explores model robustness and failure modes over time, including spurious correlations, stress testing, concept drift versus data drift, and long horizon failures, with applied testing in domains such as credit scoring.
 
 ---
 
-## Lab 05 – ML Security and Abuse Pathways
+## Lecture 05 – ML Security and Abuse Pathways
 📁 Folder: [Lecture 5](./Lecture-05-security/)
 
 Focus: Analyzes security threats and misuse of ML systems, including adversarial examples, data poisoning, model extraction, and abuse of generative models, supported by practical exercises in ML security testing.
 
 ---
 
-## Lab 06 – Responsible Deployment and Monitoring
+## Lecture 06 – Responsible Deployment and Monitoring
 📁 Folder: [Lecture 6](./Lecture-06-monitoring/)
 
 Focus: Covers post-deployment responsibilities such as data cards, model cards and system cards, continuous evaluation, alerting and rollback mechanisms, human-in-the-loop design, and organizational roles required for responsible deployment and monitoring.
 
 ---
 
-## Lab 07 – Responsible AI Management and Global Regulatory Frameworks
+## Lecture 07 – Responsible AI Management and Global Regulatory Frameworks
 📁 Folder: [Lecture 7](./Lecture-07-govAI/)
 
 Focus: Addresses system-level AI risks associated with foundation and language models, reviews global governance frameworks such as NIST AI RMF, EU AI Act, and ISO/IEC standards, and applies policy analysis through hands-on stakeholder and regulatory gap discussions.
+
+---
+
+## Minimum Standard for Capstone Projects
+📁 Folder: [Capstone](./Lecture-08-capstone/)
+
+Every capstone project must answer:
+
+1. What is the optimization objective?
+2. What are the known failure modes?
+3. How are subgroup errors measured?
+4. What risks remain after mitigation?
+5. Is deployment defensible?
+
 
 ---
 
@@ -103,19 +117,6 @@ Students are evaluated on:
 - Reproducibility
 - Documentation clarity
 - Justification under scrutiny
-
----
-
-## Minimum Standard for Capstone Projects
-📁 Folder: [Lecture 8](./Lecture-08-capstone/)
-
-Every capstone project must answer:
-
-1. What is the optimization objective?
-2. What are the known failure modes?
-3. How are subgroup errors measured?
-4. What risks remain after mitigation?
-5. Is deployment defensible?
 
 ---
 
