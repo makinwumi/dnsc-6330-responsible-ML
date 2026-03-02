@@ -39,17 +39,19 @@ Each lecture is structured as a lab module with:
 ---
 
 ## Lecture 01 – Foundations of the Alignment Problem
-**Theme:** Objective functions, proxy failure, and feedback loops  
 
 📁 Folder: [Lecture 1](./Lecture-01-alignment/)
 
 Focus: Introduces the alignment problem through real world AI and ML failures, establishes why ML systems are sociotechnical in nature, clarifies the role of Responsible ML and management, and situates the field within emerging Responsible AI career pathways. Responsible Machine Learning will be framed as a risk-benefit framework throughout the course.
 
-Contents:
-- Slides
-- Jupyter notebook (bias simulation + fairness metrics)
-- Reading integration notes
-- Case exercise (credit risk scenario)
+Outline:
+
+1. **Housekeeping**
+2. **Alignment as a practical problem**
+3. **Formalizing alignment**
+4. **Live coding**
+5. **Sociotechnical systems**
+6. **Case exercises**
 
 ---
 
