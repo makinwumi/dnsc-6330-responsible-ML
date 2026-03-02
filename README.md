@@ -1,13 +1,16 @@
 # DNSC 6330 – Responsible Machine Learning Lab
 
-Responsible Machine Learning is treated here as an applied laboratory discipline.  
-Students do not merely study principles — they implement, test, stress, diagnose, and defend machine learning systems under realistic institutional constraints.
+Artificial intelligence systems increasingly shape credit decisions, hiring pipelines, health risk scoring, insurance underwriting, and public policy implementation. As these systems scale, so do their legal, operational, and reputational risks. This course prepares future business leaders, model developers, risk managers, and governance professionals to design, evaluate, and oversee machine learning systems with rigor, accountability, and defensibility.
+
+Responsible Machine Learning examines machine learning as a sociotechnical system embedded within institutional, regulatory, and market environments. Students move beyond high-level ethical principles to operational practice: measuring bias, diagnosing model behavior, stress-testing robustness, identifying security vulnerabilities, and designing post-deployment monitoring frameworks.
+
+This course treats Responsible Machine Learning as a discipline of stewardship. Numeric grades are assigned for administrative purposes, but mastery is defined by audit-level rigor, sound reasoning, and the ability to justify decisions under legal, ethical, and operational scrutiny. Students are prepared not only to build models, but to defend them. The result is a practitioner-ready foundation for roles in AI governance, model risk management, ML audit and assurance, and responsible AI leadership within business and regulatory environments.
 
 This repository serves as the working lab environment for the course.
 
 ---
 
-## 🔬 Lab Philosophy
+## Lab Philosophy
 
 Responsible ML is built on three pillars:
 
