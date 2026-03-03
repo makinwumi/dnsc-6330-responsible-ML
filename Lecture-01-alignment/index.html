@@ -142,11 +142,11 @@
         <h3>Recommended / Extension</h3>
         <ul>
           <li>
-            <a href="Anthropic%E2%80%99s%20Responsible%20Scaling%20Policy%20(version%203.0).pdf">Anthropic — Responsible Scaling Policy (v3.0)</a>
+            <a href="https://www.anthropic.com/news/responsible-scaling-policy-v3">Anthropic — Responsible Scaling Policy (v3.0)</a>
             <span class="pill">PDF</span>
           </li>
           <li>
-            <a href="Constitutional%20AI-%20Harmlessness%20from%20AI%20Feedback.pdf">Constitutional AI — Harmlessness from AI Feedback</a>
+            <a href="https://arxiv.org/abs/2212.08073">Constitutional AI — Harmlessness from AI Feedback</a>
             <span class="pill">PDF</span>
           </li>
           <li>
@@ -166,36 +166,51 @@
         </ul>
 
         <h3>Live coding</h3>
-        <p class="meta">
-          Add your notebook link here when ready (Colab/Binder).
-        </p>
         <!-- Replace # with your real notebook link -->
         <div class="btnrow">
-          <a class="btn secondary" href="#" aria-disabled="true">Open Notebook <span class="pill">TBD</span></a>
+          <a class="btn secondary" href="https://colab.research.google.com/github/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb" aria-disabled="true">Open Notebook <span class="pill">Colab</span></a>
         </div>
       </aside>
 
     </div>
 
-    <section class="card" style="margin-top:14px;">
-      <h2>Files in this folder</h2>
-      <p class="meta">These links mirror the current folder contents.</p>
-      <ul>
-        <li><a href="AI%20Alignment.pdf">AI Alignment.pdf</a></li>
-        <li><a href="DNSC_6330_AI_Disciplines.pdf">DNSC_6330_AI_Disciplines.pdf</a></li>
-        <li><a href="Responsible%20AI%20in%20Practice.pdf">Responsible AI in Practice.pdf</a></li>
-        <li><a href="Concrete%20Problems%20in%20AI%20Safety.pdf">Concrete Problems in AI Safety.pdf</a></li>
-        <li><a href="Anthropic%E2%80%99s%20Responsible%20Scaling%20Policy%20(version%203.0).pdf">Anthropic’s Responsible Scaling Policy (version 3.0).pdf</a></li>
-        <li><a href="Constitutional%20AI-%20Harmlessness%20from%20AI%20Feedback.pdf">Constitutional AI- Harmlessness from AI Feedback.pdf</a></li>
-        <li><a href="A-Mathematical-Solution-to-the-AI-Alignment-Problem_final.pdf">A-Mathematical-Solution-to-the-AI-Alignment-Problem_final.pdf</a></li>
-      </ul>
-      <p class="meta" style="margin-top:10px;">
-        Note: <code>.DS_Store</code> is a macOS system file and should not be linked. Consider removing it from the repo and adding it to <code>.gitignore</code>.
-      </p>
-    </section>
+    <div class="grid">
+
+          <section class="card">
+            <h2>What you should be able to do after this lecture</h2>
+            <ol>
+              <li>Explain the alignment problem as a proxy-objective mismatch.</li>
+              <li>Identify common failure modes (Goodhart, distribution shift, reward hacking).</li>
+              <li>Relate alignment to governance constraints (fairness, robustness, safety, compliance).</li>
+              <li>Interpret alignment as a constraint on behavior, not just model parameters.</li>
+            </ol>
+          </section>
+
+          <aside class="card">
+              <h2>In-Class Quiz</h2>
+                <p class="meta">Short-answer (7-10 minutes each). Justify claims briefly.</p>
+
+                <h3>Q1 — Alignment vs generalization <span class="pill">T/F + justification</span></h3>
+                <p><strong>True or False:</strong> If a model generalizes well on held-out test data, then it is aligned.</p>
+
+                <h3>Q2 — Behavioral formulation <span class="pill">Short answer</span></h3>
+                <p>
+                  A deployed system induces a probability law <code>μ ∈ P(Ω)</code>.
+                  Why is it more principled to impose alignment constraints on <code>μ</code> rather than directly on internal parameters <code>θ</code>?
+                </p>
+
+                <h3>Q3 — Sociotechnical framing <span class="pill">Short answer</span></h3>
+                <p>Provide one reason why alignment cannot be solved purely as a technical optimization problem.</p>
+
+                <div class="note">
+                  Tip: distinguish between performance metrics, normative objectives, and institutional constraints.
+                </div>
+          </aside>
+
+        </div>
 
     <footer>
-      <div>created by Michael Akinwumi, @angelofmath</div>
+      <div>Created by Dr. Michael Akinwumi. He can be reached on <a href="https://www.linkedin.com/in/angelofmath/">linkedin</a>, <a href="https://x.com/angelofmath">X</a> and <a href="https://bsky.app/profile/angelofmath.bsky.social">Bluesky</a></div>
       <div>Lecture 01 · Foundations of the Alignment Problem</div>
     </footer>
 
