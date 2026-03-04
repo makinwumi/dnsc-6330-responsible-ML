@@ -46,12 +46,12 @@ Focus: Introduces the alignment problem through real world AI and ML failures, e
 
 Outline:
 
-1. **Housekeeping**
-2. **Alignment as a practical problem**
-3. **Formalizing alignment**
-4. **Live coding**
-5. **Sociotechnical systems**
-6. **Case exercises**
+1. **Housekeeping**[Go to](Lecture-01-alignment.pdf#page=1)
+2. **Alignment as a practical problem**[Go to Alignment Foundation section](Lecture-01-alignment.pdf#page=6)
+3. **Formalizing alignment**[Go to Mathematics of Alignment section](Lecture-01-alignment.pdf#page=17)
+4. **Live coding**[Go to Coding section](Lecture-01-alignment.pdf#page=28)
+5. **Sociotechnical systems**[Go to System section](Lecture-01-alignment.pdf#page=37)
+6. **Conclusion**[Go to](Lecture-01-alignment.pdf#page=1)
 
 ---
 
@@ -116,6 +116,7 @@ Every capstone project must answer:
 Students are evaluated on:
 
 - Analytical rigor
+- Working code implemented in Python (preferred) or R
 - Reproducibility
 - Documentation clarity
 - Justification under scrutiny
@@ -124,4 +125,9 @@ Students are evaluated on:
 
 # License
 
-This repository is open source under Apache 2.0.
+This project is dual-licensed under:
+
+- Apache License 2.0 (see LICENSE-APACHE)
+- Creative Commons Attribution 4.0 (see LICENSE-CC-BY)
+
+You may choose either license.
