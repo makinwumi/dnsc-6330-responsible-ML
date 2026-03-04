@@ -127,7 +127,7 @@ Students are evaluated on:
 
 This project is dual-licensed under:
 
-- Apache License 2.0 (see LICENSE-APACHE)
-- Creative Commons Attribution 4.0 (see LICENSE-CC-BY)
+- [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)(code)
+- [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/)(lecture materials)
 
-You may choose either license.
+You may choose either license where applicable.
