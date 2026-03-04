@@ -1,2 +1,5 @@
 theme: jekyll-theme-minimal
 title: "DNSC 6330 in One Sentence"
+description: Responsible Machine Learning as Sociotechnical System
+baseurl: /dnsc-6330-responsible-ML
+url: https://makinwumi.github.io
