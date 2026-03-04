@@ -42,8 +42,15 @@
       gap:14px;
       margin-top:14px;
     }
-    @media (min-width: 900px){
+    @media (max-width: 720px){
       .grid{grid-template-columns: 1.2fr .8fr;}
+      .hero-top{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .hero-logo{
+        justify-content:flex-start;
+      }
     }
     .card{
       background:rgba(18,26,51,.9);
@@ -56,9 +63,10 @@
     h3{margin:14px 0 8px; font-size:15px; color:var(--muted)}
     .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
     .btn{
-      display:inline-flex;
+      display:flex;
       align-items:center;
-      gap:8px;
+      flex-wrap:wrap;
+      gap:10px;
       padding:10px 12px;
       border-radius:12px;
       border:1px solid var(--border);
@@ -68,6 +76,7 @@
       font-weight:600;
       font-size:14px;
       white-space:nowrap;
+      margin-top:10px;
     }
     .btn.secondary{background:rgba(125,211,252,.10)}
     .btn.ghost{background:transparent}
@@ -99,21 +108,62 @@
       gap:10px;
       justify-content:space-between;
     }
+    .lecture-hero{
+      padding:18px 0 8px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+
+    /* Top row: text left, logo right */
+    .hero-top{
+      display:flex;
+      align-items:center;          /* keeps logo aligned with text block */
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    /* Prevent logo block from stretching */
+    .hero-logo{
+      flex: 0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    /* Cap logo size so it stays “inline” with the title block */
+    .hero-logo img{
+      max-height:72px;             /* adjust 60–90px to taste */
+      width:auto;
+      height:auto;
+      display:block;
+    }
+
+    /* Let text take remaining space */
+    .hero-text{
+      flex: 1 1 auto;
+      min-width: 320px;
+    }
+
+    /* Optional: tighten spacing */
+    .hero-text h1{ margin:6px 0 8px; }
+    .hero-text .subtitle{ margin:0 0 14px; color:var(--muted); }
   </style>
 </head>
 
 <body>
   <div class="wrap">
 
-    <header>
-      <div class="lecture-header-text">
-        <div class="kicker">DNSC 6330 · Responsible Machine Learning</div>
-        <h1>Lecture 01 — Foundations of the Alignment Problem</h1>
-        <p class="subtitle">This page is the navigation hub for everything in this lecture.</p>
-      </div>
+    <header class="lecture-hero">
+      <div class="hero-top">
+        <div class="hero-text">
+          <div class="kicker">DNSC 6330 · Responsible Machine Learning</div>
+          <h1>Lecture 01 — Foundations of the Alignment Problem</h1>
+          <p class="subtitle">This page is the navigation hub for everything in this lecture.</p>
+        </div>
 
-      <div class="lecture-header-logo">
-        <img src="../assets/img/GWBusiness.jpeg" alt="GW Business Logo">
+        <div class="hero-logo">
+          <img src="../assets/img/GWBusiness.jpeg" alt="GW Business Logo">
+        </div>
       </div>
 
       <div class="btnrow">
