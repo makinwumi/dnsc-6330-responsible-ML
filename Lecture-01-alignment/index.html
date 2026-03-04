@@ -173,26 +173,22 @@
       </aside>
 
     </div>
+    <section class="card" style="margin-top:14px;">
+              <h2>Potential Questions for In-Class Quiz</h2>
+                <p class="meta">Short-answer (7-10 minutes each). Justify claims.</p>
 
-    <div class="grid">
-
-          <section class="card">
-            <h2>What you should be able to do after this lecture</h2>
-            <ol>
-              <li>Explain the alignment problem as a proxy-objective mismatch.</li>
-              <li>Identify common failure modes (Goodhart, distribution shift, reward hacking).</li>
-              <li>Relate alignment to governance constraints (fairness, robustness, safety, compliance).</li>
-              <li>Interpret alignment as a constraint on behavior, not just model parameters.</li>
-            </ol>
-          </section>
-
-          <aside class="card">
-              <h2>In-Class Quiz</h2>
-                <p class="meta">Short-answer (7-10 minutes each). Justify claims briefly.</p>
-
-                <h3>Q1 — Alignment vs generalization <span class="pill">T/F + justification</span></h3>
-                <p><strong>True or False:</strong> If a model generalizes well on held-out test data, then it is aligned.</p>
-
+                <h3>Quiz 1 — Goodhart’s Law <span class="pill">Conceptual + Applied</span></h3>
+                  <p class="meta">
+                    A performance metric <code>M(h)</code> is used as a proxy for human utility <code>U(h)</code>.
+                  </p>
+                    <strong>Prompt:</strong>
+                    Explain why optimizing <code>M(h)</code> aggressively may reduce <code>U(h)</code>.
+                  </p>
+                  <ul>
+                    <li>Your answer must reference <strong>distribution shift</strong> or <strong>gaming behavior</strong>.</li>
+                    <li>Your answer must distinguish between <strong>correlation</strong> and <strong>objective equivalence</strong>.</li>
+                  </ul>
+                <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
                 <h3>Q2 — Behavioral formulation <span class="pill">Short answer</span></h3>
                 <p>
                   A deployed system induces a probability law <code>μ ∈ P(Ω)</code>.
@@ -202,15 +198,46 @@
                 <h3>Q3 — Sociotechnical framing <span class="pill">Short answer</span></h3>
                 <p>Provide one reason why alignment cannot be solved purely as a technical optimization problem.</p>
 
-                <div class="note">
-                  Tip: distinguish between performance metrics, normative objectives, and institutional constraints.
-                </div>
-          </aside>
+                <h3>Quiz 4 — Feasible Set Geometry <span class="pill">Reasoning</span></h3>
+                  <p class="meta">
+                    Consider the constrained formulation:
+                    <code>min<sub>h</sub> L(h)</code> subject to <code>C<sub>i</sub>(h) ≤ 0</code>.
+                  </p>
+                  <p>
+                    <strong>Prompt:</strong>
+                    Suppose a fairness constraint shrinks the feasible region. What happens to the optimal value of
+                    <code>L(h)</code> after adding constraints?
+                  </p>
+                  <p class="meta"><strong>Choose one</strong> and justify:</p>
+                  <ol type="A">
+                    <li>It must improve</li>
+                    <li>It must worsen or stay the same</li>
+                    <li>It is unaffected</li>
+                    <li>It becomes undefined</li>
+                  </ol>
+                  <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+                    <h3>Quiz 5 — Parameter vs Behavioral Alignment <span class="pill">Governance</span></h3>
+                      <p class="meta">
+                        Two models <code>h<sub>1</sub></code> and <code>h<sub>2</sub></code> have different internal parameters but induce the same
+                        distribution over trajectories <code>μ</code>.
+                      </p>
+                      <p>
+                        <strong>Prompt:</strong>
+                        From a governance perspective, are they meaningfully different? Why or why not?
+                      </p>
+                      <ul>
+                        <li>Your answer should reference <strong>observability</strong> and <strong>accountability</strong>.</li>
+                        <li>Optional: mention <strong>non-identifiability</strong> or “different parameters, same behavior.”</li>
+                      </ul>
 
-        </div>
+                    <div class="note">
+                      Tip: distinguish between performance metrics, normative objectives, and institutional constraints.
+                    </div>
 
+    </section>
+    
     <footer>
-      <div>Created by Dr. Michael Akinwumi. He can be reached on <a href="https://www.linkedin.com/in/angelofmath/">linkedin</a>, <a href="https://x.com/angelofmath">X</a> and <a href="https://bsky.app/profile/angelofmath.bsky.social">Bluesky</a></div>
+      <div>Created by Dr. Michael Akinwumi. He can be reached on <a href="https://www.linkedin.com/in/angelofmath/">Linkedin</a>, <a href="https://x.com/angelofmath">X</a> and <a href="https://bsky.app/profile/angelofmath.bsky.social">Bluesky</a></div>
       <div>Lecture 01 · Foundations of the Alignment Problem</div>
     </footer>
 
