@@ -10,7 +10,7 @@ This repository serves as the working lab environment for the course.
 
 ---
 
-## Lab Philosophy
+## Course Philosophy
 
 Responsible ML is built on three pillars:
 
