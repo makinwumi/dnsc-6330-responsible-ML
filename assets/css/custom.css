@@ -1,17 +1,63 @@
+/* Header row for index.md */
 .site-header-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:16px;
-  margin: 8px 0 18px;
+  gap:20px;
+  flex-wrap:nowrap;            /* prevents logo from wrapping under text */
+  margin: 10px 0 18px;
 }
-.site-header-text h1{ margin:0; }
-.site-header-text p{ margin:8px 0 0; }
+
+/* Allow text column to shrink properly on mobile */
+.site-header-text{
+  flex: 1 1 auto;
+  min-width:0;                 /* key */
+}
+
+.site-header-text h1{
+  margin: 0 0 6px;
+}
+
+.site-header-text p{
+  margin: 0;
+  color: #6b7280;              /* muted gray for Minimal theme */
+  font-size: 1.05rem;
+}
+
+/* Logo column */
+.site-header-logo{
+  flex: 0 0 auto;
+  display:flex;
+  justify-content:flex-end;
+  align-items:flex-start;
+  margin-left:auto;
+}
+
 .site-header-logo img{
-  max-height:72px;
+  display:block;
   height:auto;
   width:auto;
+  max-height:64px;             /* desktop cap */
+  max-width:110px;
 }
-@media (max-width: 720px){
-  .site-header-row{ flex-direction:column; align-items:flex-start; }
+
+/* --- Mobile behavior --- */
+@media (max-width: 700px){
+  .site-header-row{
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  /* shrink logo and keep it in the row */
+  .site-header-logo img{
+    max-height:52px;
+    max-width:90px;
+  }
+
+  /* optional: reduce title size to avoid pushing logo */
+  .site-header-text h1{
+    font-size: 1.6rem;
+    line-height: 1.15;
+  }
+  .subtitle{ font-size: 14px; }
 }

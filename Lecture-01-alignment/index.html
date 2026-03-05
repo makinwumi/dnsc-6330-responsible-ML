@@ -43,38 +43,38 @@
       margin-top:14px;
     }
     @media (max-width: 900px){
-          h1{ font-size: 24px; }
-          .subtitle{ font-size: 14px; }
-          .grid{grid-template-columns: 1fr;}
+      h1{ font-size: 24px; }
+      .subtitle{ font-size: 14px; }
+      .grid{grid-template-columns: 1fr;}
 
-          /* Keep header row layout: text left, logo right */
-          .hero-top{
-            flex-direction: row;
-            /*align-items: flex-start;*/
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:20px;
-            flex-wrap: nowrap;
-          }
+      /* Keep header row layout: text left, logo right */
+      .hero-top{
+        flex-direction: row;
+        /*align-items: flex-start;*/
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:20px;
+        flex-wrap: nowrap;
+      }
 
-          /* Ensure logo stays right */
-          .hero-logo{
-            margin-left: auto;
-            justify-content: flex-end;
-          }
+      /* Ensure logo stays right */
+      .hero-logo{
+        margin-left: auto;
+        justify-content: flex-end;
+      }
 
-          /* Allow text to wrap without pushing logo down */
-          .hero-text{
-            flex: 1 1 auto;
-            min-width: 0;     /* important: prevents flex overflow behavior */
-          }
+      /* Allow text to wrap without pushing logo down */
+      .hero-text{
+        flex: 1 1 auto;
+        min-width: 0;     /* important: prevents flex overflow behavior */
+      }
 
-          /* Make logo smaller on mobile */
-          .hero-logo img{
-            max-height: 56px; /* try 48–64px */
-            max-width: 96px;  /* prevents it from dominating the row */
-          }
+      /* Make logo smaller on mobile */
+      .hero-logo img{
+        max-height: 56px; /* try 48–64px */
+        max-width: 96px;  /* prevents it from dominating the row */
+      }
     }
     .card{
       background:rgba(18,26,51,.9);
