@@ -25,7 +25,7 @@ This course treats Responsible Machine Learning as a discipline of stewardship. 
 
 This repository serves as the working lab environment for the course.
 
-## Course Philosophy
+## Course Philosophy & Syllabus
 
 Responsible ML is built on three pillars:
 
@@ -40,6 +40,8 @@ Each lecture is structured as a lab module with:
 - Code experiments
 - Risk diagnostics
 - Governance artifacts
+
+The course syllabus is [here](./Syllabus-MA-ResponsibleMachineLearning-MSBA-v2.0.pdf).
 
 ## Class Modules
 
