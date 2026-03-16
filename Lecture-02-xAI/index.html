@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DNSC 6330 · Lecture 01 — Foundations of the Alignment Problem</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --text:#e9ecf5;
+      --muted:#b8c0dd;
+      --link:#7dd3fc;
+      --accent:#a78bfa;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(167,139,250,.25), transparent 60%),
+                  radial-gradient(1000px 700px at 80% 0%, rgba(125,211,252,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 48px}
+    header{
+      padding:18px 0 8px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+    .kicker{color:var(--muted); font-size:14px; letter-spacing:.02em}
+    h1{margin:6px 0 8px; font-size:28px}
+    .subtitle{margin:0 0 14px; color:var(--muted)}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 900px){
+      h1{ font-size: 24px; }
+      .subtitle{ font-size: 14px; }
+      .grid{grid-template-columns: 1fr;}
+
+      /* Keep header row layout: text left, logo right */
+      .hero-top{
+        flex-direction: row;
+        /*align-items: flex-start;*/
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:20px;
+        flex-wrap: nowrap;
+      }
+
+      /* Ensure logo stays right */
+      .hero-logo{
+        margin-left: auto;
+        justify-content: flex-end;
+      }
+
+      /* Allow text to wrap without pushing logo down */
+      .hero-text{
+        flex: 1 1 auto;
+        min-width: 0;     /* important: prevents flex overflow behavior */
+      }
+
+      /* Make logo smaller on mobile */
+      .hero-logo img{
+        max-height: 56px; /* try 48–64px */
+        max-width: 96px;  /* prevents it from dominating the row */
+      }
+    }
+    .card{
+      background:rgba(18,26,51,.9);
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow: var(--shadow);
+      padding:16px 16px;
+    }
+    h2{margin:0 0 10px; font-size:18px}
+    h3{margin:14px 0 8px; font-size:15px; color:var(--muted)}
+    .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .btn{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(167,139,250,.12);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      white-space:nowrap;
+      margin-top:10px;
+    }
+    .btn.secondary{background:rgba(125,211,252,.10)}
+    .btn.ghost{background:transparent}
+    .meta{font-size:13px; color:var(--muted)}
+    ul{margin:8px 0 0 18px; padding:0}
+    li{margin:6px 0}
+    code,kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+    }
+    .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:2px 8px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      color:var(--muted);
+      margin-left:8px;
+      vertical-align:middle;
+    }
+    footer{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+    }
+    .lecture-hero{
+      padding:18px 0 8px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+
+    /* Top row: text left, logo right */
+    .hero-top{
+      display:flex;
+      align-items:center;          /* keeps logo aligned with text block */
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    /* Prevent logo block from stretching */
+    .hero-logo{
+      flex: 0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    /* Cap logo size so it stays “inline” with the title block */
+    .hero-logo img{
+      max-height:72px;             /* adjust 60–90px to taste */
+      width:auto;
+      height:auto;
+      display:block;
+    }
+
+    /* Let text take remaining space */
+    .hero-text{
+      flex: 1 1 auto;
+      min-width: 320px;
+    }
+
+    /* Optional: tighten spacing */
+    .hero-text h1{ margin:6px 0 8px; }
+    .hero-text .subtitle{ margin:0 0 14px; color:var(--muted); }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="lecture-hero">
+      <div class="hero-top">
+        <div class="hero-text">
+          <div class="kicker">DNSC 6330 · Responsible Machine Learning</div>
+          <h1>Lecture 02: Explainability and Interpretability as Diagnostic Tools</h1>
+          <p class="subtitle">This page is the navigation hub for everything in this lecture.</p>
+        </div>
+
+        <div class="hero-logo">
+          <img src="../assets/img/GWBusiness.jpeg" alt="GW Business Logo">
+        </div>
+      </div>
+
+      <div class="btnrow">
+        <a class="btn" href="DNSC_6330_Lecture-02.pdf">Open Lecture Slides <span class="pill">PDF</span></a>
+        <a class="btn secondary" href="../Syllabus-MA-ResponsibleMachineLearning-MSBA-v2.0.pdf">Course Syllabus<span class="pill">PDF</span></a>
+        <a class="btn ghost" href="../">Back to Course Home</a>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <section class="card">
+        <h2>Required Reading</h2>
+        <ul>
+          <li>
+            <a href="https://christophm.github.io/interpretable-ml-book/">Molnar, C., Interpretable Machine Learning: A Guide for Making Black Box Models Explainable, 3rd ed. 2 Chapters 2, 3, 4, 8, 12–15, 17.</a>
+            <span class="pill">book / excerpt</span>
+          </li>
+          <li>
+            <a href="https://www.amazon.com/Machine-Learning-High-Risk-Applications-Responsible/dp/1098102436">Machine Learning for High-risk Applications, by Patrick Hall, James Curtis, and Parul Pandey (2023), O’Reilly, Chapter 2</a>
+            <span class="pill">book / excerpt</span>
+          </li>
+        </ul>
+
+        <h3>Recommended / Extension</h3>
+        <ul>
+          <li>
+            <a href="https://arxiv.org/abs/1911.02508">Slack, D. et al. (2020). <em>Fooling LIME and SHAP: Adversarial Attacks on Post hoc Explanation Methods.</em> AIES 2020.</a>
+            <span class="pill">PDF</span>
+          </li>
+          <li>
+            <a href="https://arxiv.org/abs/1711.00399">Wachter, S., Mittelstadt, B. & Russell, C. (2017). <em>Counterfactual Explanations Without Opening the Black Box: Automated Decisions and the GDPR.</em> Harvard Journal of Law & Technology, 31(2).</a>
+            <span class="pill">PDF</span>
+          </li>
+          <li>
+            <a href="https://arxiv.org/abs/1705.07874">Lundberg, S. & Lee, S.-I. (2017). <em>A Unified Approach to Interpreting Model Predictions.</em> NeurIPS 2017.</a>
+            <span class="pill">PDF</span>
+          </li>
+        </ul>
+      </section>
+
+      <aside class="card">
+        <h2>What you should be able to do after this lecture</h2>
+        <ul>
+          <li>Distinguish between interpretability, explainability, and transparency — and identify the right tool for the right goal.</li>
+          <li>Apply at least two post-hoc local explanation methods on a real dataset.</li>
+          <li>Generate and evaluate counterfactual explanations with awareness of actionability and immutability constraints.</li>
+          <li>Articulate why explainability alone is insufficient for responsible ML deployment.</li>
+        </ul>
+
+        <h3>Live coding</h3>
+        <!-- Replace # with your real notebook link -->
+        <div class="btnrow">
+          <a class="btn secondary" href="https://colab.research.google.com/github/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb" aria-disabled="true">Open Notebook (not yet updated)<span class="pill">Colab</span></a>
+        </div>
+      </aside>
+
+    </div>
+    <section class="card" style="margin-top:14px;">
+        <h2>Potential Questions for In-Class Quiz</h2>
+        <p>Short-answer (7–10 minutes each). Justify claims.</p>
+
+        <h3>Quiz 1 — Transparency and Trust <span class="pill">Conceptual + Applied</span></h3>
+        <p>
+          A data scientist produces SHAP explanations for a credit scoring model
+          and presents them to regulators as evidence that the model is fair and
+          trustworthy.
+        </p>
+        <p>
+          <strong>Prompt:</strong>
+          Identify at least two reasons why transparency does not imply trust,
+          and explain why explainability alone is insufficient for responsible ML
+          deployment.
+        </p>
+        <ul>
+          <li>Your answer must distinguish between <strong>explainability</strong> and <strong>interpretability</strong>.</li>
+          <li>Your answer must reference at least one <strong>stakeholder group</strong> whose justification needs differ from the regulator's.</li>
+        </ul>
+
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+
+        <h3>Quiz 2 — Shapley Axioms Applied <span class="pill">Reasoning</span></h3>
+        <p>
+          Two features, <code>race</code> and <code>priors_count</code>, are used
+          in a recidivism model. A Shapley audit finds
+          <code>φ<sub>race</sub> = 0</code> for every defendant in the test set.
+        </p>
+        <p>
+          <strong>Prompt:</strong>
+          Does <code>φ<sub>race</sub> = 0</code> imply that the model is
+          race-neutral? Why or why not?
+        </p>
+        <ul>
+          <li>Your answer must reference the <strong>Dummy axiom</strong> and the <strong>Efficiency axiom</strong>.</li>
+          <li>Your answer must explain how proxy features can produce racial
+              disparity even when <code>φ<sub>race</sub> = 0</code>.</li>
+        </ul>
+
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+
+        <h3>Q3 — LIME Locality <span class="pill">Short answer</span></h3>
+        <p>
+          A practitioner uses LIME to explain a gradient-boosted tree trained on
+          the COMPAS cohort and reports the feature weights as a description of
+          global model behavior.
+        </p>
+        <p>
+          <strong>Prompt:</strong>
+          Identify the conceptual error in this interpretation and explain what
+          LIME actually guarantees.
+        </p>
+        <ul>
+          <li>Your answer must reference <strong>local fidelity</strong> vs. <strong>global fidelity</strong>.</li>
+          <li>Optional: explain how the choice of neighborhood kernel affects
+              stability of the explanation.</li>
+        </ul>
+
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+
+        <h3>Quiz 4 — Counterfactual Recourse Governance <span class="pill">Reasoning</span></h3>
+        <p>
+          A DiCE counterfactual for a denied loan applicant recommends changing
+          <code>race</code> from minority to majority as the minimal feature
+          change that flips the decision from rejected to approved.
+        </p>
+        <p>
+          <strong>Prompt:</strong>
+          Is this a valid actionable recourse recommendation? What should a
+          responsible ML practitioner do with this result?
+        </p>
+        <p><strong>Choose one</strong> and justify:</p>
+        <ol type="A">
+          <li>Report it as-is — DiCE produced a mathematically valid counterfactual.</li>
+          <li>Discard it — counterfactuals involving immutable attributes are always meaningless.</li>
+          <li>Flag it as a governance red flag and investigate whether race is
+              encoded as a proxy in other features.</li>
+          <li>Retrain the model with race removed from the feature set and rerun DiCE.</li>
+        </ol>
+
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+
+        <h3>Quiz 5 — Wachter vs Dandl Methods <span class="pill">Short answer</span></h3>
+        <p>
+          Both the Wachter et al. and Dandl et al. methods generate counterfactual
+          explanations, but they differ in how many quality criteria they optimize.
+        </p>
+        <p>
+          <strong>Prompt:</strong>
+          Identify one criterion that the Dandl et al. method satisfies that the
+          Wachter et al. method does not, and explain why that criterion matters
+          for a defendant in a criminal justice setting.
+        </p>
+        <ul>
+          <li>Your answer must reference the <strong>Rashomon effect</strong>.</li>
+          <li>Optional: explain the role of <strong>NSGA-II</strong> in producing
+              a Pareto front of counterfactuals.</li>
+        </ul>
+
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+
+        <div class="note">
+          Tip: distinguish between what a method computes, what it guarantees,
+          and what it implies for governance. A correct computation is not
+          automatically a defensible decision.
+        </div>
+
+    </section>
+    
+    <footer>
+      <div>Created by Dr. Michael Akinwumi. He can be reached on <a href="https://www.linkedin.com/in/angelofmath/">Linkedin</a>, <a href="https://x.com/angelofmath">X</a> and <a href="https://bsky.app/profile/angelofmath.bsky.social">Bluesky</a></div>
+      <div>Lecture 01 · Foundations of the Alignment Problem</div>
+    </footer>
+
+  </div>
+</body>
+</html>
