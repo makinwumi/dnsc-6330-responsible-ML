@@ -44,15 +44,6 @@ Each lecture is structured as a lab module with:
 
 Focus: Introduces the alignment problem through real world AI and ML failures, establishes why ML systems are sociotechnical in nature, clarifies the role of Responsible ML and management, and situates the field within emerging Responsible AI career pathways. Responsible Machine Learning will be framed as a risk-benefit framework throughout the course.
 
-Outline:
-
-1. **Housekeeping**
-2. **Alignment as a practical problem**
-3. **Formalizing alignment**
-4. **Live coding**
-5. **Sociotechnical systems**
-6. **Conclusion**
-
 ---
 
 ## Lecture 02 – Explainability and Interpretability as Diagnostic Tools
@@ -94,6 +85,13 @@ Focus: Covers post-deployment responsibilities such as data cards, model cards a
 📁 Folder: [Lecture 7](./Lecture-07-govAI/)
 
 Focus: Addresses system-level AI risks associated with foundation and language models, reviews global governance frameworks such as NIST AI RMF, EU AI Act, and ISO/IEC standards, and applies policy analysis through hands-on stakeholder and regulatory gap discussions.
+
+---
+
+## In-class Codes
+📁 Folder: [Live Coding](./Live-coding/)
+
+This folder contains codes completed in class. It will be updated every Wednesday.
 
 ---
 
