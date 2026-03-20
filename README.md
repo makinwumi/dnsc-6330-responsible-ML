@@ -30,7 +30,7 @@ Each lecture is structured as a lab module with:
 
 # Core Course Artifacts
 
-- [Course Syllabus](./Syllabus-MA-ResponsibleMachineLearning-MSBA-v2.0.pdf)
+- [Course Syllabus](./Syllabus-MA-ResponsibleMachineLearning-MSBA-v3.0.pdf)
 
 ---
 

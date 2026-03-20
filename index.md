@@ -41,7 +41,7 @@ Each lecture is structured as a lab module with:
 - Risk diagnostics
 - Governance artifacts
 
-The course syllabus is [here](./Syllabus-MA-ResponsibleMachineLearning-MSBA-v2.0.pdf).
+The course syllabus is [here](./Syllabus-MA-ResponsibleMachineLearning-MSBA-v3.0.pdf).
 
 ## Class Modules
 
