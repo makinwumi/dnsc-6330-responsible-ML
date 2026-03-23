@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DNSC 6330 · Lecture 01 — Foundations of the Alignment Problem</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --text:#e9ecf5;
+      --muted:#b8c0dd;
+      --link:#7dd3fc;
+      --accent:#a78bfa;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(167,139,250,.25), transparent 60%),
+                  radial-gradient(1000px 700px at 80% 0%, rgba(125,211,252,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 48px}
+    header{
+      padding:18px 0 8px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+    .kicker{color:var(--muted); font-size:14px; letter-spacing:.02em}
+    h1{margin:6px 0 8px; font-size:28px}
+    .subtitle{margin:0 0 14px; color:var(--muted)}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 900px){
+      h1{ font-size: 24px; }
+      .subtitle{ font-size: 14px; }
+      .grid{grid-template-columns: 1fr;}
+
+      /* Keep header row layout: text left, logo right */
+      .hero-top{
+        flex-direction: row;
+        /*align-items: flex-start;*/
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:20px;
+        flex-wrap: nowrap;
+      }
+
+      /* Ensure logo stays right */
+      .hero-logo{
+        margin-left: auto;
+        justify-content: flex-end;
+      }
+
+      /* Allow text to wrap without pushing logo down */
+      .hero-text{
+        flex: 1 1 auto;
+        min-width: 0;     /* important: prevents flex overflow behavior */
+      }
+
+      /* Make logo smaller on mobile */
+      .hero-logo img{
+        max-height: 56px; /* try 48–64px */
+        max-width: 96px;  /* prevents it from dominating the row */
+      }
+    }
+    .card{
+      background:rgba(18,26,51,.9);
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow: var(--shadow);
+      padding:16px 16px;
+    }
+    h2{margin:0 0 10px; font-size:18px}
+    h3{margin:14px 0 8px; font-size:15px; color:var(--muted)}
+    .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .btn{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(167,139,250,.12);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      white-space:nowrap;
+      margin-top:10px;
+    }
+    .btn.secondary{background:rgba(125,211,252,.10)}
+    .btn.ghost{background:transparent}
+    .meta{font-size:13px; color:var(--muted)}
+    ul{margin:8px 0 0 18px; padding:0}
+    li{margin:6px 0}
+    code,kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+    }
+    .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:2px 8px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      color:var(--muted);
+      margin-left:8px;
+      vertical-align:middle;
+    }
+    footer{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+    }
+    .lecture-hero{
+      padding:18px 0 8px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+
+    /* Top row: text left, logo right */
+    .hero-top{
+      display:flex;
+      align-items:center;          /* keeps logo aligned with text block */
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    /* Prevent logo block from stretching */
+    .hero-logo{
+      flex: 0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    /* Cap logo size so it stays “inline” with the title block */
+    .hero-logo img{
+      max-height:72px;             /* adjust 60–90px to taste */
+      width:auto;
+      height:auto;
+      display:block;
+    }
+
+    /* Let text take remaining space */
+    .hero-text{
+      flex: 1 1 auto;
+      min-width: 320px;
+    }
+
+    /* Optional: tighten spacing */
+    .hero-text h1{ margin:6px 0 8px; }
+    .hero-text .subtitle{ margin:0 0 14px; color:var(--muted); }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="lecture-hero">
+      <div class="hero-top">
+        <div class="hero-text">
+          <div class="kicker">DNSC 6330 · Responsible Machine Learning</div>
+          <h1>Lecture 03 — Algorithmic Bias Measurement</h1>
+          <p class="subtitle">This page is the navigation hub for everything in this lecture.</p>
+        </div>
+
+        <div class="hero-logo">
+          <img src="../assets/img/GWBusiness.jpeg" alt="GW Business Logo">
+        </div>
+      </div>
+
+      <div class="btnrow">
+        <a class="btn" href="DNSC_6330_Lecture-03.pdf">Open Lecture Slides <span class="pill">PDF</span></a>
+        <a class="btn secondary" href="../Syllabus-MA-ResponsibleMachineLearning-MSBA-v3.0.pdf">Course Syllabus<span class="pill">PDF</span></a>
+        <a class="btn ghost" href="../">Back to Course Home</a>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <section class="card">
+        <h2>Required Reading</h2>
+        <ul>
+          <li>
+            <a href="https://fairmlbook.org/">Barocas, Hardt & Narayanan, Fairness and Machine Learning (2023), Chapters 3 and 6</a>
+            <span class="pill">book / excerpt</span>
+          </li>
+          <li>
+            <a href="https://www.mdpi.com/2078-2489/11/3/137">Gill, N., Hall, P., Montgomery, K., & Schmidt, N. (2020). A Responsible Machine Learning Workflow with Focus on Interpretable Models, Post-hoc Explanation, and Discrimination Testing. Information, 11(3), 137. https://doi.org/10.3390/info11030137</a>
+            <span class="pill">PDF</span>
+          </li>
+          <li>
+            New Jersey Division of Civil Rights Resources: (a) <a href="https://www.njoag.gov/wp-content/uploads/2025/12/DI-Burden-Shifting-Flowchart.pdf">Disparate Impact Discrimination Claim Analysis</a>
+            (b) <a href="https://www.njoag.gov/wp-content/uploads/2025/01/2025-1-8-DCR-Guidance-on-Algorithimic-Discrimination-.pdf">Guidance on Algorithmic Discrimination and the  New Jersey Law Against Discrimination</a> and 
+            (c) <a href="https://www.njoag.gov/wp-content/uploads/2025/01/2025-1-8-DCR-Guidance-on-Algorithimic-Discrimination-.pdf">Introduction to Algorithmic Fairness</a>
+            <span class="pill">PDF</span>
+          </li>
+        </ul>
+
+        <h3>Recommended / Extension</h3>
+        <ul>
+          <li>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/28632438/">Chouldechova A. Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments. Big Data. 2017 Jun;5(2):153-163. doi: 10.1089/big.2016.0047. PMID: 28632438.</a>
+            <span class="pill">PDF</span>
+          </li>
+          <li>
+            <a href="https://proceedings.mlr.press/v81/buolamwini18a.html">Buolamwini, J. &amp; Gebru, T.. (2018). Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification. <i>Proceedings of the 1st Conference on Fairness, Accountability and Transparency</i>, in <i>Proceedings of Machine Learning Research</i> 81:77-91 Available from https://proceedings.mlr.press/v81/buolamwini18a.html.</a>
+            <span class="pill">PDF</span>
+          </li>
+          <li>
+            <a href="https://chicagounbound.uchicago.edu/uclf/vol1989/iss1/8">Crenshaw, Kimberle (1989) "Demarginalizing the Intersection of Race and Sex: A Black Feminist Critique of Antidiscrimination Doctrine, Feminist Theory and Antiracist Politics," University of Chicago Legal Forum: Vol. 1989, Article 8.</a>
+            <span class="pill">PDF</span>
+          </li>
+        </ul>
+      </section>
+
+      <aside class="card">
+        <h2>What you should be able to do after this lecture</h2>
+          <ol>
+            <li>Identify and classify allocative, representational, and quality-of-service harms in deployed ML systems.</li>
+            <li>Apply the burden-shifting framework to evaluate whether a model's outputs constitute unlawful disparate impact.</li>
+            <li>Compute and interpret AIR, ME, and SMD against the EEOC 80% Rule.</li>
+            <li>Conduct a full subgroup evaluation pipeline in Python using <code>solas-ai-disparity</code>.</li>
+            <li>Translate bias measurement findings into a documented, governance-ready audit report.</li>
+          </ol>
+        <h3>Live coding</h3>
+        <!-- Replace # with your real notebook link -->
+        <div class="btnrow">
+          <a class="btn secondary" href="" aria-disabled="true">Open Notebook (not yet updated)<span class="pill">Colab</span></a>
+        </div>
+      </aside>
+
+    </div>
+    <section class="card" style="margin-top:14px;">
+              <h2>Potential Questions for In-Class Quiz</h2>
+                <p>Short-answer (7-10 minutes each). Justify claims.</p>
+
+                <h3>Quiz 1</h3>
+                  <p>
+                    A hiring algorithm achieves 87% overall accuracy but produces an Adverse Impact Ratio of 0.74 for Black applicants relative to White applicants, with only 35 Black applicants in the dataset. Is this sufficient evidence of disparate impact under the EEOC 80% Rule? Explain the role of sample size in your answer.
+                  </p>
+                <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+                <h3>Quiz 2</h3>
+                <p>
+                  The p-value for the Marginal Effect test is 0.31, meaning the disparity is not statistically significant. Does this mean the employer is free from legal risk? What does the burden-shifting framework say about practical vs. statistical significance?
+                </p>
+                <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+
+                <h3>Quiz 3</h3>
+                <p>As the auditing data scientist, what would you recommend the employer do next? Your answer should address whether to retrain the model, adjust the decision threshold, collect more data, or restrict the model's use — and justify your choice.</p>
+                <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+
+                <h3>Quiz 4</h3>
+                  <p>
+                    Suppose the employer argues the algorithm is necessary because it improves hiring efficiency by 40%. Walk through how the burden-shifting framework would evaluate this business necessity claim, and identify what the plaintiff would need to show in Step 3 to prevail.
+                  </p>
+    
+                  <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
+
+    </section>
+    
+    <footer>
+      <div>Created by Dr. Michael Akinwumi. He can be reached on <a href="https://www.linkedin.com/in/angelofmath/">Linkedin</a>, <a href="https://x.com/angelofmath">X</a> and <a href="https://bsky.app/profile/angelofmath.bsky.social">Bluesky</a></div>
+      <div>Lecture 03 — Algorithmic Bias Measurement</div>
+    </footer>
+
+  </div>
+</body>
+</html>
