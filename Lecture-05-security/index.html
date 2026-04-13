@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lecture 04 — Robustness, Generalization, and Dataset Drift</title>
+  <title>DNSC 6330 · Lecture 05 – ML Security and Abuse Pathways</title>
   <style>
     :root{
       --bg:#0b1020;
@@ -181,7 +181,7 @@
       <div class="hero-top">
         <div class="hero-text">
           <div class="kicker">DNSC 6330 · Responsible Machine Learning</div>
-          <h1>Lecture 04 — Robustness, Generalization, and Dataset Drift </h1>
+          <h1>Lecture 05 – ML Security and Abuse Pathways </h1>
           <p class="subtitle">This page is the navigation hub for everything in this lecture.</p>
         </div>
 
@@ -191,7 +191,7 @@
       </div>
 
       <div class="btnrow">
-        <a class="btn" href="DNSC_6330_Lecture-04.pdf">Open Lecture Slides <span class="pill">PDF</span></a>
+        <a class="btn" href="DNSC_6330_Lecture-05.pdf">Open Lecture Slides <span class="pill">PDF</span></a>
         <a class="btn secondary" href="../Syllabus-MA-ResponsibleMachineLearning-MSBA-v3.0.pdf">Course Syllabus<span class="pill">PDF</span></a>
         <a class="btn ghost" href="../">Back to Course Home</a>
       </div>
@@ -203,12 +203,12 @@
         <h2>Required Reading</h2>
         <ul>
           <li>
-            <a href="https://arxiv.org/abs/1606.06565">Amodei et al. — <em>Concrete Problems in AI Safety</em></a>
+            <a href="https://www.cambridge.org/core/books/adversarial-machine-learning/C42A9D49CBC626DF7B8E54E72974AA3B">Joseph AD, Nelson B, Rubinstein BIP, Tygar JD <em>AAdversarial Machine Learning. Cambridge University Press; 2019, Chapters 3 - 5 </em></a>
             <span class="pill">PDF</span>
           </li>
           <li>
-            <a href="https://www.cambridge.org/core/books/machine-learning-evaluation/8AB8B77D2F1D715F0A5CB0CB0813F5E7">Japkowicz N, Boukouvalas Z. Responsible Machine Learning. In: Machine Learning Evaluation: Towards Reliable and Responsible AI. Cambridge University Press; 2024:308-358.</a>
-            <span class="pill">PDF</span>
+            <a href="https://www.amazon.com/Machine-Learning-High-Risk-Applications-Responsible/dp/1098102436">Machine Learning for High-risk Applications, by Patrick Hall, James Curtis, and Parul Pandey (2023), O’Reilly, Chapter 2</a>
+            <span class="pill">book / excerpt</span>
           </li>
         </ul>
 
@@ -216,29 +216,25 @@
         <h2>Recommended / Extension</h2>
         <ul>
           <li>
-            <a href="https://www.nist.gov/publications/challenges-monitoring-deployed-ai-systems-center-ai-standards-and-innovation">Rao, A. , Keller, A. , Kalra, N. , Steed, R. , Kwegyir-Aggrey, K. , Klyman, K. , Staheli, D. and Bergman, A. (2026), Challenges to the monitoring of deployed AI systems: Center for AI Standards and Innovation, NIST Trustworthy and Responsible AI, National Institute of Standards and Technology, Gaithersburg, MD, [online], https://doi.org/10.6028/NIST.AI.800-4, https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=961461 (Accessed April 2, 2026)</a>
+            <a href="https://csrc.nist.gov/pubs/ai/100/2/e2025/final"> NIST (2025) Adversarial Machine Learning: A Taxonomy and Terminology</a>
             <span class="pill">PDF</span>
           </li>
-          <li>
-            <a href="https://link.springer.com/chapter/10.1007/978-981-97-8946-7_3">Francis, N., Ali, A. (2025). Identifying and Managing Concept Drift in Machine Learning Through Page-Hinkley Test: Approaches, Obstacles, and Resolutions. In: Mahapatra, R.P., Roy, S., Parwekar, P. (eds) Proceedings of International Conference on Recent Trends in Computing. ICRTC 2024. Lecture Notes in Networks and Systems, vol 886. Springer, Singapore. https://doi.org/10.1007/978-981-97-8946-7_3</a>
-            <span class="pill">PDF</span>
-          </li>
-        </ul>
       </section>
 
       <aside class="card">
         <h2>What you should be able to do after this lecture</h2>
           <ol>
-            <li>Distinguish robustness from generalization.</li>
-            <li>Identify spurious correlations.</li>
-            <li>Differentiate data drift from concept drift.</li>
-            <li>Design stress tests for ML systems.</li>
-            <li>Diagnose long-horizon failures.</li>
+            <li>Classify adversarial ML attacks along the five dimensions of the NIST AI 100-2 taxonomy.</li>
+            <li>Distinguish availability poisoning, targeted poisoning, and backdoor attacks by mechanism and detectability.</li>
+            <li>Explain why clean-label and backdoor attacks evade standard validation metrics.</li>
+            <li>Implement a PGD evasion attack on tabular data and measure its disparate impact by race.</li>
+            <li>Simulate a label-flip poisoning loop and plot AUC and AIR degradation as a function of poison rate.</li>
+            <li>Build a shadow-model membership inference pipeline and interpret the resulting ROC curve.</li>
           </ol>
         <h3>Live coding</h3>
         <!-- Replace # with your real notebook link -->
         <div class="btnrow">
-          <a class="btn secondary" href="https://colab.research.google.com/github/makinwumi/dnsc-6330-responsible-ML/blob/main/Live-coding/Lecture-04-generalization.ipynb" aria-disabled="true">Open Notebook <span class="pill">Colab</span></a>
+          <a class="btn secondary" href="https://colab.research.google.com/github/makinwumi/dnsc-6330-responsible-ML/blob/main/Live-coding/Lecture-05-security.ipynb" aria-disabled="true">Open Notebook <span class="pill">Colab</span></a>
         </div>
       </aside>
 
@@ -247,43 +243,21 @@
               <h2>Potential Questions for In-Class Quiz</h2>
                 <p>Short-answer (7-10 minutes each). Justify claims.</p>
 
-                <h3 style="margin: 0 0 10px 0; font-size: 1.2rem;">Quiz 1: Distribution Drift</h3>
+                <h3 style="margin: 0 0 10px 0; font-size: 1.2rem;">Quiz 1: PGD Evasion and Disparate Impact</h3>
                 <p style="margin: 0; line-height: 1.7; font-size: 1rem;">
-                A model trained on historical housing data shows PSI &lt; 0.05 for all individual features, but MMD between train and test is high.
-                Is this evidence of distributional stability or instability? Explain what this reveals about feature interactions and why univariate
-                tests may be insufficient.
+                Based on the lab results, is a model that is "more fair under attack" actually safer to deploy? Distinguish between <strong>absolute harm</strong> and <strong>relative disparity</strong> in your answer.
                 </p>
                 <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
 
-                <h3 style="margin: 0 0 10px 0; font-size: 1.2rem;">Quiz 2: Generalization and Overfitting</h3>
+                <h3 style="margin: 0 0 10px 0; font-size: 1.2rem;">Quiz 2: Data Poisoning and the Stealth Zone</h3>
                 <p style="margin: 0; line-height: 1.7; font-size: 1rem;">
-                  A model achieves Train AUC = 0.92 and Test AUC = 0.74. However, PSI and KS tests indicate minimal distribution drift.
-                  What is the most likely explanation for this performance gap? Discuss whether this is due to overfitting, data leakage,
-                  or concept shift, and justify your answer.
+                  Using the results from the lab, identify the stealth zone — the poison rate range where the attack is undetectable by standard AUC monitoring yet causes a meaningful fairness violation.
                 </p>
                 <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
 
-                <h3 style="margin: 0 0 10px 0; font-size: 1.2rem;">Quiz 3: Spurious Correlations</h3>
+                <h3 style="margin: 0 0 10px 0; font-size: 1.2rem;">Quiz 3: Membership Inference and the Overfitting–Privacy Link</h3>
                 <p style="margin: 0; line-height: 1.7; font-size: 1rem;">
-                  A counterfactual test shows that swapping race (African-American ↔ Caucasian) changes predicted probabilities by an average of 0.12,
-                  holding all other features constant. Does this constitute evidence of algorithmic bias? Explain the distinction between
-                  correlation vs. causal dependence and proxy variables vs. direct use of protected attributes.
-                </p>
-                <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
-
-                <h3 style="margin: 0 0 10px 0; font-size: 1.2rem;">Quiz 4: Robustness and Stress Testing</h3>
-                <p style="margin: 0; line-height: 1.7; font-size: 1rem;">
-                  After increasing <code style="background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 6px; color: #f5f7fb;">priors_count</code>
-                  by +5 in a stress test, mean predicted probability increases significantly and the classification rate shifts from 40% to 65% high-risk.
-                  What does this suggest about the model’s robustness? Would you characterize this as expected sensitivity or instability? Justify your answer.
-                </p>
-                <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
-
-                <h3 style="margin: 0 0 10px 0; font-size: 1.2rem;">Quiz 5: Slice-Based Evaluation and Risk</h3>
-                <p style="margin: 0; line-height: 1.7; font-size: 1rem;">
-                  A model has overall accuracy of 85%, but FNR for one subgroup is 45%, compared to 12% overall.
-                  Is this primarily a performance issue, a fairness issue, or a deployment risk issue? Explain your answer and discuss what action
-                  should be taken before deployment.
+                  If this model were deployed by a county probation office with a public API, what specific information could a journalist extract using this attack? Be precise about what "membership" reveals in this context.
                 </p>
                 <hr style="border:0;border-top:1px solid rgba(255,255,255,.10);margin:14px 0;">
 
