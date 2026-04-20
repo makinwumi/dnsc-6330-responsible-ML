@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DNSC 6330 · Lecture 05 – ML Security and Abuse Pathways</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --text:#e9ecf5;
+      --muted:#b8c0dd;
+      --link:#7dd3fc;
+      --accent:#a78bfa;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(167,139,250,.25), transparent 60%),
+                  radial-gradient(1000px 700px at 80% 0%, rgba(125,211,252,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 48px}
+    header{
+      padding:18px 0 8px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+    .kicker{color:var(--muted); font-size:14px; letter-spacing:.02em}
+    h1{margin:6px 0 8px; font-size:28px}
+    .subtitle{margin:0 0 14px; color:var(--muted)}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 900px){
+      h1{ font-size: 24px; }
+      .subtitle{ font-size: 14px; }
+      .grid{grid-template-columns: 1fr;}
+
+      /* Keep header row layout: text left, logo right */
+      .hero-top{
+        flex-direction: row;
+        /*align-items: flex-start;*/
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:20px;
+        flex-wrap: nowrap;
+      }
+
+      /* Ensure logo stays right */
+      .hero-logo{
+        margin-left: auto;
+        justify-content: flex-end;
+      }
+
+      /* Allow text to wrap without pushing logo down */
+      .hero-text{
+        flex: 1 1 auto;
+        min-width: 0;     /* important: prevents flex overflow behavior */
+      }
+
+      /* Make logo smaller on mobile */
+      .hero-logo img{
+        max-height: 56px; /* try 48–64px */
+        max-width: 96px;  /* prevents it from dominating the row */
+      }
+    }
+    .card{
+      background:rgba(18,26,51,.9);
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow: var(--shadow);
+      padding:16px 16px;
+    }
+    h2{margin:0 0 10px; font-size:18px}
+    h3{margin:14px 0 8px; font-size:15px; color:var(--muted)}
+    .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .btn{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(167,139,250,.12);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      white-space:nowrap;
+      margin-top:10px;
+    }
+    .btn.secondary{background:rgba(125,211,252,.10)}
+    .btn.ghost{background:transparent}
+    .meta{font-size:13px; color:var(--muted)}
+    ul{margin:8px 0 0 18px; padding:0}
+    li{margin:6px 0}
+    code,kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+    }
+    .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:2px 8px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      color:var(--muted);
+      margin-left:8px;
+      vertical-align:middle;
+    }
+    footer{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+    }
+    .lecture-hero{
+      padding:18px 0 8px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+
+    /* Top row: text left, logo right */
+    .hero-top{
+      display:flex;
+      align-items:center;          /* keeps logo aligned with text block */
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    /* Prevent logo block from stretching */
+    .hero-logo{
+      flex: 0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    /* Cap logo size so it stays “inline” with the title block */
+    .hero-logo img{
+      max-height:72px;             /* adjust 60–90px to taste */
+      width:auto;
+      height:auto;
+      display:block;
+    }
+
+    /* Let text take remaining space */
+    .hero-text{
+      flex: 1 1 auto;
+      min-width: 320px;
+    }
+
+    /* Optional: tighten spacing */
+    .hero-text h1{ margin:6px 0 8px; }
+    .hero-text .subtitle{ margin:0 0 14px; color:var(--muted); }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="lecture-hero">
+      <div class="hero-top">
+        <div class="hero-text">
+          <div class="kicker">DNSC 6330 · Responsible Machine Learning</div>
+          <h1>Lecture 06 – Bridging to the Capstone </h1>
+          <p class="subtitle">This page is the navigation hub for everything in this lecture.</p>
+        </div>
+
+        <div class="hero-logo">
+          <img src="../assets/img/GWBusiness.jpeg" alt="GW Business Logo">
+        </div>
+      </div>
+
+      <div class="btnrow">
+        <a class="btn" href="DNSC_6330_Lecture-06.pdf">Open Lecture Slides <span class="pill">PDF</span></a>
+        <a class="btn secondary" href="../Syllabus-MA-ResponsibleMachineLearning-MSBA-v3.0.pdf">Course Syllabus<span class="pill">PDF</span></a>
+        <a class="btn ghost" href="../">Back to Course Home</a>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <section class="card">
+        <h2>Recommended Reading</h2>
+            <li>
+              <strong>Nancy Duarte, <em>Resonate</em></strong><br>
+              Best for narrative structure and persuasive storytelling. Useful for helping students frame the problem, explain why it matters, and end with a clear recommendation.
+            </li>
+            <li>
+              <strong>Cole Nussbaumer Knaflic, <em>Storytelling with Data</em></strong><br>
+              Best for visual communication of results. Especially useful for presenting charts, fairness metrics, subgroup comparisons, and model diagnostics clearly.
+            </li>
+            <li>
+              <strong>Edward Tufte, <em>The Visual Display of Quantitative Information</em></strong><br>
+              Best for rigorous and honest presentation of quantitative evidence. Helps students avoid misleading visuals and present audit results with integrity.
+            </li>
+        </ul>
+      </section>
+
+      <aside class="card">
+        <h2>You should be able to answer the following questions about the castone project after this lecture</h2>
+          <ol>
+            <li>What is the optimization objective for the capstone project?</li>
+            <li>What are the known failure modes?</li>
+            <li>How are subgroup errors measured?</li>
+            <li>What risks remain after mitigation?</li>
+            <li>Is deployment defensible?</li>
+          </ol>
+        <h3>Live coding</h3>
+        <div class="btnrow">
+          <a class="btn secondary" href="" aria-disabled="true">No Lab for this Lecture <span class="pill">Colab</span></a>
+        </div>
+      </aside>
+
+    </div>
+    <section class="card" style="margin-top:14px;">
+        <div style="max-width: 900px; margin: 0 auto; font-family: Arial, sans-serif;">
+
+          <h2 style="background-color:#0b2e59; color:white; padding:12px; text-align:center;">
+            Team Quiz — Audit Scope Worksheet (4 points)
+          </h2>
+
+          <p style="font-size:16px; color:#0b2e59; font-weight:600;">
+            Your team should produce a working answer to each of the following about the capstone project:
+          </p>
+
+          <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+
+            <thead>
+              <tr style="background-color:#d9dde3;">
+                <th style="border:1px solid #333; padding:12px; text-align:center; color:#0b2e59;">
+                  Question
+                </th>
+                <th style="border:1px solid #333; padding:12px; text-align:center;">
+                  Your team’s current answer
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td style="border:1px solid #333; padding:14px; font-weight:600; color:#0b2e59;">
+                  Optimization objective
+                </td>
+                <td style="border:1px solid #333; padding:20px;"></td>
+              </tr>
+
+              <tr>
+                <td style="border:1px solid #333; padding:14px; font-weight:600; color:#0b2e59;">
+                  Two known failure modes
+                </td>
+                <td style="border:1px solid #333; padding:20px;"></td>
+              </tr>
+
+              <tr>
+                <td style="border:1px solid #333; padding:14px; font-weight:600; color:#0b2e59;">
+                  Subgroup metrics &amp; groups
+                </td>
+                <td style="border:1px solid #333; padding:30px;"></td>
+              </tr>
+
+              <tr>
+                <td style="border:1px solid #333; padding:14px; font-weight:600; color:#0b2e59;">
+                  Residual risk you will accept
+                </td>
+                <td style="border:1px solid #333; padding:30px;"></td>
+              </tr>
+
+              <tr>
+                <td style="border:1px solid #333; padding:14px; font-weight:600; color:#0b2e59;">
+                  Deployment recommendation
+                </td>
+                <td style="border:1px solid #333; padding:30px;"></td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+    </section>
+    
+    <footer>
+      <div>Created by Dr. Michael Akinwumi. He can be reached on <a href="https://www.linkedin.com/in/angelofmath/">Linkedin</a>, <a href="https://x.com/angelofmath">X</a> and <a href="https://bsky.app/profile/angelofmath.bsky.social">Bluesky</a></div>
+      <div>Lecture 04 – Robustness, Generalization, and Dataset Drift</div>
+    </footer>
+
+  </div>
+</body>
+</html>
