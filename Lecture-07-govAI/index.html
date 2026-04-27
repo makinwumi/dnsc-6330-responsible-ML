@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DNSC 6330 · Lecture 07 - Responsible AI Management and Global Regulatory Frameworks</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --text:#e9ecf5;
+      --muted:#b8c0dd;
+      --link:#7dd3fc;
+      --accent:#a78bfa;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(167,139,250,.25), transparent 60%),
+                  radial-gradient(1000px 700px at 80% 0%, rgba(125,211,252,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 48px}
+    header{
+      padding:18px 0 8px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+    .kicker{color:var(--muted); font-size:14px; letter-spacing:.02em}
+    h1{margin:6px 0 8px; font-size:28px}
+    .subtitle{margin:0 0 14px; color:var(--muted)}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 900px){
+      h1{ font-size: 24px; }
+      .subtitle{ font-size: 14px; }
+      .grid{grid-template-columns: 1fr;}
+
+      /* Keep header row layout: text left, logo right */
+      .hero-top{
+        flex-direction: row;
+        /*align-items: flex-start;*/
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:20px;
+        flex-wrap: nowrap;
+      }
+
+      /* Ensure logo stays right */
+      .hero-logo{
+        margin-left: auto;
+        justify-content: flex-end;
+      }
+
+      /* Allow text to wrap without pushing logo down */
+      .hero-text{
+        flex: 1 1 auto;
+        min-width: 0;     /* important: prevents flex overflow behavior */
+      }
+
+      /* Make logo smaller on mobile */
+      .hero-logo img{
+        max-height: 56px; /* try 48–64px */
+        max-width: 96px;  /* prevents it from dominating the row */
+      }
+    }
+    .card{
+      background:rgba(18,26,51,.9);
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow: var(--shadow);
+      padding:16px 16px;
+    }
+    h2{margin:0 0 10px; font-size:18px}
+    h3{margin:14px 0 8px; font-size:15px; color:var(--muted)}
+    .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .btn{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(167,139,250,.12);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      white-space:nowrap;
+      margin-top:10px;
+    }
+    .btn.secondary{background:rgba(125,211,252,.10)}
+    .btn.ghost{background:transparent}
+    .meta{font-size:13px; color:var(--muted)}
+    ul{margin:8px 0 0 18px; padding:0}
+    li{margin:6px 0}
+    code,kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+    }
+    .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:2px 8px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      color:var(--muted);
+      margin-left:8px;
+      vertical-align:middle;
+    }
+    footer{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+    }
+    .lecture-hero{
+      padding:18px 0 8px;
+      border-bottom:1px solid var(--border);
+      margin-bottom:18px;
+    }
+
+    /* Top row: text left, logo right */
+    .hero-top{
+      display:flex;
+      align-items:center;          /* keeps logo aligned with text block */
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    /* Prevent logo block from stretching */
+    .hero-logo{
+      flex: 0 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    /* Cap logo size so it stays “inline” with the title block */
+    .hero-logo img{
+      max-height:72px;             /* adjust 60–90px to taste */
+      width:auto;
+      height:auto;
+      display:block;
+    }
+
+    /* Let text take remaining space */
+    .hero-text{
+      flex: 1 1 auto;
+      min-width: 320px;
+    }
+
+    /* Optional: tighten spacing */
+    .hero-text h1{ margin:6px 0 8px; }
+    .hero-text .subtitle{ margin:0 0 14px; color:var(--muted); }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header class="lecture-hero">
+      <div class="hero-top">
+        <div class="hero-text">
+          <div class="kicker">DNSC 6330 · Responsible Machine Learning</div>
+          <h1>Lecture 07 - Responsible AI Management and Global Regulatory Frameworks</h1>
+          <p class="subtitle">This page is the navigation hub for everything in this lecture.</p>
+        </div>
+
+        <div class="hero-logo">
+          <img src="../assets/img/GWBusiness.jpeg" alt="GW Business Logo">
+        </div>
+      </div>
+
+      <div class="btnrow">
+        <a class="btn" href="DNSC_6330_Lecture-07.pdf">Open Lecture Slides <span class="pill">PDF</span></a>
+        <a class="btn secondary" href="../Syllabus-MA-ResponsibleMachineLearning-MSBA-v3.0.pdf">Course Syllabus<span class="pill">PDF</span></a>
+        <a class="btn ghost" href="../">Back to Course Home</a>
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <section class="card">
+        <h2>Recommended Reading</h2>
+            <li>
+            <a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI Risk Management Framework (RMF)</a> <span class="pill">PDF</span>
+            </li>
+            <li>
+            <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf">NIST AI RMF: Generative Artificial Intelligence Profile</a> <span class="pill">PDF</span>
+            </li>
+            <li>
+            <a href="https://moritzlaw.osu.edu/sites/default/files/2025-09/Introductory%20Guide%20to%20Responsible%20AI%20Management_0909.pdf">Introductory Guide to Responsible AI Management by Denniss Hirsch (2025)</a> <span class="pill">PDF</span>
+            </li>
+            <li>
+            <a href="https://www.oecd.org/en/topics/sub-issues/ai-principles.html">The OECD AI Principles</a> <span class="pill">PDF</span>
+            </li>
+        </ul>
+      </section>
+
+      <aside class="card">
+        <h2>You should be able to answer the following questions about the castone project after this lecture</h2>
+          <ol>
+            <li>Describe the purpose and components of data cards, model cards, and system cards as post-deployment artifacts.</li>
+            <li>Explain what continuous evaluation, alerting, and rollback mechanisms look like in an operational ML context.</li>
+            <li>Identify the organizational roles required for responsible AI deployment and monitoring.</li>
+            <li>Characterize system-level AI risks associated with ML models in production.</li>
+          </ol>
+        <h3>Live coding</h3>
+        <div class="btnrow">
+          <a class="btn secondary" href="" aria-disabled="true">No Lab for this Lecture <span class="pill">Colab</span></a>
+        </div>
+      </aside>
+
+    </div>
+  <section class="card" style="margin-top:14px;">
+
+      <h2>No quiz for this lecture.</h2>
+
+  </section>
+    
+    <footer>
+      <div>Created by Dr. Michael Akinwumi. He can be reached on <a href="https://www.linkedin.com/in/angelofmath/">Linkedin</a>, <a href="https://x.com/angelofmath">X</a> and <a href="https://bsky.app/profile/angelofmath.bsky.social">Bluesky</a></div>
+      <div>Lecture 04 – Robustness, Generalization, and Dataset Drift</div>
+    </footer>
+
+  </div>
+</body>
+</html>
